@@ -19,7 +19,7 @@
         @if (Route::has('login'))
             <div>
                 @auth
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    <a href="{{ url('/home') }}">home</a>
                 @else
                     <a href="{{ route('login') }}">Log in</a>
 
@@ -29,8 +29,6 @@
                 @endauth
             </div>
         @endif
-
-        <x-exp></x-exp>
 
         <footer></footer>
 </body>
