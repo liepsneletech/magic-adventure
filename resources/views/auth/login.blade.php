@@ -44,7 +44,5 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
-        <i class="fa-brands fa-facebook-f"></i>
-        <i class="fa-brands fa-angellist"></i>
     </form>
-</x-guest-layout>
+    </x-guest-layo>
