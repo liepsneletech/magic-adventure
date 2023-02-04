@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\BackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 
 Route::middleware('roles:admin')->prefix('admin')->group(function () {
-    Route::get('/home', [FrontController::class, 'adminHome'])->name('admin-home');
+    Route::get('/orders', [BackController::class, 'orders'])->name('orders');
+    Route::get('/hotels', [BackController::class, 'orders'])->name('admin');
+    Route::get('/countries', [BackController::class, 'orders'])->name('admin');
 });
 
-Route::get('/home', [FrontController::class, 'customerHome'])->name('customer-home')->middleware('roles:customer');
+Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:customer');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

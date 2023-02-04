@@ -4,5 +4,6 @@
             magiskus
             nuotykius!</h1>
         <p class="text-white text-right ml-auto pt-5 text-lg">Unikaliausi viešbučiai visame pasaulyje</p>
+        <button></button>
     </div>
 </x-front-layout>

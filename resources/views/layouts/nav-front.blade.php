@@ -2,21 +2,29 @@
 
     <!-- Primary nav Menu -->
     <div class="container flex justify-between items-center h-16">
-        <div class="flex">
-            <!-- Logo -->
-            <div class="shrink-0 flex items-center">
-                <a href="{{ route('index') }}">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                </a>
-            </div>
-
-            <!-- nav Links -->
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                    {{ __('Pradžia') }}
-                </x-nav-link>
-            </div>
+        <!-- Logo -->
+        <div class="shrink-0 flex items-center">
+            <a href="{{ route('index') }}">
+                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            </a>
         </div>
+
+        <!-- nav Links -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                {{ __('Pradžia') }}
+            </x-nav-link>
+            <x-nav-link :href="route('index')" :active="request()->routeIs('hotels')">
+                {{ __('Visi viešbučiai') }}
+            </x-nav-link>
+            <x-nav-link :href="route('index')" :active="request()->routeIs('about')">
+                {{ __('Apie mus') }}
+            </x-nav-link>
+            <x-nav-link :href="route('index')" :active="request()->routeIs('info')">
+                {{ __('Naudinga informacija') }}
+            </x-nav-link>
+        </div>
+
 
         @auth
             <div class="nav-front-logged-in">
@@ -72,12 +80,11 @@
                     </button>
                 </div>
 
-
                 <!-- Responsive nav Menu -->
                 <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                            {{ __('index') }}
+                            {{ __('Pradžia') }}
                         </x-responsive-nav-link>
                     </div>
 
@@ -109,9 +116,13 @@
             </div>
         @endauth
         @guest
-            <div class="nav-front-logged-out flex gap-3">
-                <a href="{{ route('login') }}">Prisijungti</a>
-                <a href="{{ route('register') }}">Registruotis</a>
+            <div class="nav-front-logged-out flex gap-5">
+                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Prisijungti') }}
+                </x-nav-link>
+                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    {{ __('Registruotis') }}
+                </x-nav-link>
             </div>
         @endguest
     </div>

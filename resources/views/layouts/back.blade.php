@@ -15,11 +15,11 @@
     <link href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/front/app.css','resources/js/front/app.js'])
+    @vite(['resources/css/back/app.css','resources/js/back/app.js'])
 </head>
 
 <body>
-    @include('layouts.nav-front')
+    @include('layouts.nav-back')
 
         <!-- Page Heading -->
         @if (isset($header))

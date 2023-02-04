@@ -1,21 +1,26 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 py-4">
 
     <!-- Primary nav Menu -->
-    <div class="container flex justify-between h-16">
-        <div class="flex">
-            <!-- Logo -->
-            <div class="shrink-0 flex items-center">
-                <a href="{{ route('index') }}">
-                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                </a>
-            </div>
+    <div class="container flex justify-between items-center h-16">
 
-            <!-- nav Links -->
-            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                    {{ __('index') }}
-                </x-nav-link>
-            </div>
+        <!-- Logo -->
+        <div class="shrink-0 flex items-center">
+            <a href="{{ route('index') }}">
+                <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+            </a>
+        </div>
+
+        <!-- nav Links -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+                {{ __('Užsakymai') }}
+            </x-nav-link>
+            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                {{ __('Viešbučiai') }}
+            </x-nav-link>
+            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+                {{ __('Šalys') }}
+            </x-nav-link>
         </div>
 
         @auth
@@ -77,7 +82,7 @@
                 <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                            {{ __('index') }}
+                            {{ __('Pradžia') }}
                         </x-responsive-nav-link>
                     </div>
 
@@ -109,10 +114,15 @@
             </div>
         @endauth
         @guest
-            <div class="nav-front-logged-out">
-                <a href="{{ route('login') }}">Log in</a>
-                <a href="{{ route('register') }}">Register</a>
+            <div class="nav-back-logged-out flex gap-5">
+                <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Prisijungti') }}
+                </x-nav-link>
+                <x-nav-link :href="route('register')" :active="request()->routeIs('register')">
+                    {{ __('Registruotis') }}
+                </x-nav-link>
             </div>
         @endguest
     </div>
+
 </nav>

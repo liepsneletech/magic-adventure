@@ -12,7 +12,7 @@ class FrontController extends Controller
     {
         if (auth()->check()) {
             if (auth()->user()->role == User::ROLES['admin']) {
-                return redirect()->route('admin-home');
+                return redirect()->route('orders');
             }
             if (auth()->user()->role == User::ROLES['customer']) {
                 return redirect()->route('customer-home');
@@ -22,12 +22,7 @@ class FrontController extends Controller
         return view('pages.front.home');
     }
 
-    public function adminHome()
-    {
-        return view('pages.back.home');
-    }
-
-    public function customerHome()
+    public function home()
     {
         return view('pages.front.home');
     }
