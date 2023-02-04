@@ -17,14 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
+Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:customer');
 
 Route::middleware('roles:admin')->prefix('admin')->group(function () {
-    Route::get('/orders', [BackController::class, 'orders'])->name('orders');
-    Route::get('/hotels', [BackController::class, 'orders'])->name('admin');
-    Route::get('/countries', [BackController::class, 'orders'])->name('admin');
+    Route::get('/orders', [BackController::class, 'showOrders'])->name('show-back-orders');
+    Route::get('/hotels', [BackController::class, 'showHotels'])->name('show-back-hotels');
+    Route::get('/countries', [BackController::class, 'showCountries'])->name('show-back-countries');
 });
-
-Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:customer');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

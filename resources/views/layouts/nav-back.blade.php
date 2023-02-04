@@ -12,13 +12,13 @@
 
         <!-- nav Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('orders')" :active="request()->routeIs('orders')">
+            <x-nav-link :href="route('show-back-orders')" :active="request()->routeIs('show-back-orders')">
                 {{ __('Užsakymai') }}
             </x-nav-link>
-            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+            <x-nav-link :href="route('show-back-hotels')" :active="request()->routeIs('show-back-hotels')">
                 {{ __('Viešbučiai') }}
             </x-nav-link>
-            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+            <x-nav-link :href="route('show-back-countries')" :active="request()->routeIs('show-back-countries')">
                 {{ __('Šalys') }}
             </x-nav-link>
         </div>
