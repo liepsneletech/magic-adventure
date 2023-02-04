@@ -1,8 +1,8 @@
-<x-auth-layout>
+<x-front-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" class="w-1/3 mx-auto pt-10">
         @csrf
 
         <!-- Email Address -->
@@ -45,4 +45,4 @@
             </x-primary-button>
         </div>
     </form>
-    </x-auth-layo>
+    </x-auth-layout>

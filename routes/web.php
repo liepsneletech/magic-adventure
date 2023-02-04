@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [FrontController::class, 'index'])->name('index');
+
+Route::middleware('roles:admin')->prefix('admin')->group(function () {
+    Route::get('/home', [FrontController::class, 'adminHome'])->name('admin-home');
 });
 
-Route::get('/home', function () {
-    return view('pages.front.home');
-})->middleware(['auth', 'verified'])->name('home');
+Route::get('/home', [FrontController::class, 'customerHome'])->name('customer-home')->middleware('roles:customer');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

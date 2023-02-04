@@ -1,2 +1,13 @@
 @import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@font-face {
+    font-family: "Amellia";
+    src: local("Amellia"), url("assets/fonts/Amellia.ttf");
+}
+
+.primary-heading {
+    font-family: "Amellia";
+}
