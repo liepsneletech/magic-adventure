@@ -1,5 +1,5 @@
 <x-back-layout>
     <div class="container">
         <p>Admin orders</p>
-    </div class="container">
+    </div>
 </x-back-layout>

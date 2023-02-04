@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Icons -->
-    <link href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/back/app.css','resources/js/back/app.js'])
@@ -30,8 +31,9 @@
             </header> @endif
 
         <!-- Page Content -->
-        <main>
-             {{ $slot }}
-        </main>
-</body>
+        <main class="py-32">
+    {{ $slot }}
+    </main>
+    </body>
+
 </html>
