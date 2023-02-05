@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['country_name', 'season_start', 'season_end'];
+
+    public $timestamps = false;
 }
