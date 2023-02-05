@@ -12,4 +12,9 @@ class Country extends Model
     protected $fillable = ['country_name', 'season_start', 'season_end'];
 
     public $timestamps = false;
+
+    public function countryHotels()
+    {
+        return $this->hasMany(Hotel::class, 'country_id', 'id');
+    }
 }

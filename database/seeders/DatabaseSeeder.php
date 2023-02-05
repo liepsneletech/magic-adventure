@@ -29,5 +29,23 @@ class DatabaseSeeder extends Seeder
             'email' => 'simona@gmail.com',
             'password' => Hash::make('simona123'),
         ]);
+
+        DB::table('countries')->insert([
+            'country_name' => 'Makedonija',
+            'season_start' => '2023-02-05',
+            'season_end' => '2023-02-11',
+        ]);
+
+        DB::table('countries')->insert([
+            'country_name' => 'Brazilija',
+            'season_start' => '2023-06-14',
+            'season_end' => '2023-07-14',
+        ]);
+
+        DB::table('countries')->insert([
+            'country_name' => 'Portugalija',
+            'season_start' => '2023-05-20',
+            'season_end' => '2023-09-14',
+        ]);
     }
 }

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
     public function showCountries()
     {
-        return view('pages.back.countries');
+        $countries = Country::all();
+        return view('pages.back.countries', compact('countries'));
     }
 
     public function addCountry()
@@ -16,9 +18,24 @@ class CountryController extends Controller
         return view('pages.back.add-country');
     }
 
-    public function storeCountry()
+    public function storeCountry(Request $request)
     {
-        return redirect()->back();
+        $incomingFields = $request->validate(
+            [
+                'country_name' => ['required'],
+                'season_start' => ['required'],
+                'season_end' => ['required']
+            ],
+            [
+                'country_name.required' => 'Šalies pavadinimo laukelis privalomas',
+                'season_start.required' => 'Sezono pradžios laukelis privalomas',
+                'season_end.required' => 'Sezono pabaigos laukelis privalomas',
+            ]
+        );
+
+        Country::create($incomingFields);
+
+        return redirect()->back()->with('success', 'Sėkmingai pridėjote šalį!');
     }
 
     public function editCountry()
