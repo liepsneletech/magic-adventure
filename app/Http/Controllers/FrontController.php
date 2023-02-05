@@ -15,7 +15,7 @@ class FrontController extends Controller
                 return redirect()->route('show-back-orders');
             }
             if (auth()->user()->role == User::ROLES['customer']) {
-                return redirect()->route('customer-home');
+                return redirect()->route('home');
             }
         }
 

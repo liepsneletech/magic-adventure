@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
-            $table->id('hotel_title');
+            $table->string('hotel_title', 30);
             $table->decimal('price')->unsigned();
             $table->string('img', 150)->nullable();
             $table->integer('duration')->unsigned();
             $table->string('country', 30);
-            $table->foreign('country')->references('name')->on('countries');
+            $table->foreign('country')->references('country_name')->on('countries');
         });
     }
 
