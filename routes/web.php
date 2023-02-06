@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
@@ -14,8 +15,10 @@ Route::middleware('roles:admin')->prefix('admin')->group(function () {
     Route::get('/orders', [OrderController::class, 'showOrders'])->name('show-back-orders');
     Route::put('/orders', [OrderController::class, 'updateOrder'])->name('update-back-order');
 
+    Route::get('/products', [ProductController::class, 'showProducts'])->name('show-back-products');
+
     Route::get('/hotels', [HotelController::class, 'showHotels'])->name('show-back-hotels');
-    Route::get('/hotels/add', [HotelController::class, 'addHotel'])->name('add-back-hotel');
+    Route::get('/hotels/add', [HotelController::class, 'createHotel'])->name('create-back-hotel');
     Route::post('/hotels/add', [HotelController::class, 'storeHotel'])->name('store-back-hotel');
     Route::get('/hotels/edit/{hotel}', [HotelController::class, 'editHotel'])->name('edit-back-hotel');
     Route::put('/hotels/edit/{hotel}', [HotelController::class, 'updateHotel'])->name('update-back-hotel');

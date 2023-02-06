@@ -15,6 +15,9 @@
             <x-nav-link :href="route('show-back-orders')" :active="request()->routeIs('show-back-orders')">
                 {{ __('Užsakymai') }}
             </x-nav-link>
+            <x-nav-link :href="route('show-back-products')" :active="request()->routeIs('show-back-products')">
+                {{ __('Pasiūlymai') }}
+            </x-nav-link>
             <x-nav-link :href="route('show-back-hotels')" :active="request()->routeIs('show-back-hotels')">
                 {{ __('Viešbučiai') }}
             </x-nav-link>
