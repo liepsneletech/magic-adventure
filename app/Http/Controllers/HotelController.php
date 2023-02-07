@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 class HotelController extends Controller
 {
 
-    public function showHotels()
+    public function indexHotel()
     {
         $hotels = Hotel::all();
         return view('pages.back.hotels', compact('hotels'));
@@ -33,7 +33,6 @@ class HotelController extends Controller
                 'country_id' => ['required'],
                 'title' => ['required'],
                 'desc' => ['required'],
-                'price' => ['required']
             ]
         );
 
@@ -65,25 +64,46 @@ class HotelController extends Controller
         $hotel->country_id = $request->country_id;
         $hotel->title = $request->title;
         $hotel->desc = $request->desc;
-        $hotel->price = $request->price;
 
         $hotel->save();
 
         return redirect()->back()->with('success', 'Sėkmingai pridėjote viešbutį!');
     }
 
-    public function editHotel()
+    public function editHotel(Hotel $hotel, Country $country)
     {
-        return view('pages.back.edit-hotel');
+        $countries = Country::all();
+        return view('pages.back.edit-hotel', compact('hotel', 'countries', 'country'));
     }
 
-    public function updateHotel()
+    public function updateHotel(Request $request, Hotel $hotel)
     {
-        return redirect()->back();
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'country_id' => ['required'],
+                'title' => ['required'],
+                'desc' => ['required'],
+            ]
+        );
+
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $hotel->country_id = $request->country_id;
+        $hotel->title = $request->title;
+        $hotel->desc = $request->desc;
+
+        $hotel->save();
+
+        return redirect()->back()->with('success', 'Sėkmingai atnaujinote šalį');
     }
 
-    public function deleteHotel()
+    public function deleteHotel(Hotel $hotel)
     {
-        return redirect()->back();
+        $hotel->delete();
+        return redirect()->back()->with('success', 'Sėkmingai ištrynėte viešbutį');
     }
 }

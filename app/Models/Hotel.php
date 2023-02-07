@@ -9,7 +9,7 @@ class Hotel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'desc', 'price', 'image', 'country_id'];
+    protected $fillable = ['title', 'desc', 'image', 'country_id'];
 
     public $timestamps = false;
 

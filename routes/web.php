@@ -17,15 +17,15 @@ Route::middleware('roles:admin')->prefix('admin')->group(function () {
 
     Route::get('/products', [ProductController::class, 'showProducts'])->name('show-back-products');
 
-    Route::get('/hotels', [HotelController::class, 'showHotels'])->name('show-back-hotels');
+    Route::get('/hotels', [HotelController::class, 'indexHotel'])->name('show-back-hotels');
     Route::get('/hotels/add', [HotelController::class, 'createHotel'])->name('create-back-hotel');
     Route::post('/hotels/add', [HotelController::class, 'storeHotel'])->name('store-back-hotel');
     Route::get('/hotels/edit/{hotel}', [HotelController::class, 'editHotel'])->name('edit-back-hotel');
     Route::put('/hotels/edit/{hotel}', [HotelController::class, 'updateHotel'])->name('update-back-hotel');
     Route::delete('/hotels/delete/{hotel}', [HotelController::class, 'deleteHotel'])->name('delete-back-hotel');
 
-    Route::get('/countries', [CountryController::class, 'showCountries'])->name('show-back-countries');
-    Route::get('/countries/add', [CountryController::class, 'addCountry'])->name('add-back-country');
+    Route::get('/countries', [CountryController::class, 'indexCountry'])->name('show-back-countries');
+    Route::get('/countries/add', [CountryController::class, 'createCountry'])->name('create-back-country');
     Route::post('/countries/add', [CountryController::class, 'storeCountry'])->name('store-back-country');
     Route::get('/countries/edit/{country}', [CountryController::class, 'editCountry'])->name('edit-back-country');
     Route::put('/countries/edit/{country}', [CountryController::class, 'updateCountry'])->name('update-back-country');

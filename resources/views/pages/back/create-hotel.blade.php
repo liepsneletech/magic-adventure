@@ -21,10 +21,6 @@
             <x-textarea-input id="desc" class="block mt-1 w-full  mb-3" type="text" name="desc"
                 :value="old('desc')" autofocus />
 
-            <x-input-label for="price" :value="__('Kaina')" />
-            <x-text-input id="price" class="block mt-1 w-full  mb-5" type="text" name="price" :value="old('price')"
-                autofocus />
-
             <div class="flex gap-2 px-3 mb-5 items-center bg-green-600 rounded-md">
                 <span class="material-symbols-outlined text-white cursor-pointer">add_photo_alternate</span>
                 <x-input-label for="image" :value="__('Pridėti nuotrauką')" class="py-2 text-white cursor-pointer" />

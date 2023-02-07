@@ -6,16 +6,21 @@
                     <p>{{ $hotel->hotelCountry->country_name }}</p>
                     <p>{{ $hotel->title }}</p>
                     <p>{{ $hotel->desc }}</p>
-                    <p>{{ $hotel->price }}</p>
                     <img src="{{ asset($hotel->image) }}" />
 
                     <div class="flex gap-3">
-                        <x-primary-button>
-                            {{ __('Edit') }}
-                        </x-primary-button>
-                        <x-primary-button>
-                            {{ __('Delete') }}
-                        </x-primary-button>
+                        <a href="{{ route('edit-back-hotel', $hotel) }}">
+                            <x-primary-button>
+                                {{ __('Edit') }}
+                            </x-primary-button>
+                        </a>
+                        <form action="{{ route('delete-back-hotel', $hotel) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <x-primary-button>
+                                {{ __('Delete') }}
+                            </x-primary-button>
+                        </form>
                     </div>
                 </div>
             @empty

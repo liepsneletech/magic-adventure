@@ -15,7 +15,7 @@
                 {{ __('Pradžia') }}
             </x-nav-link>
             <x-nav-link :href="route('index')" :active="request()->routeIs('hotels')">
-                {{ __('Visi viešbučiai') }}
+                {{ __('Pasiūlymai') }}
             </x-nav-link>
             <x-nav-link :href="route('index')" :active="request()->routeIs('about')">
                 {{ __('Apie mus') }}

@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->text('desc');
-            $table->decimal('price', 10, 2)->unsigned();
             $table->string('image', 200)->nullable();
-            $table->bigInteger('country_id')->unsigned();
-            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreignId('country_id')->constrained()->onDelete('cascade');
         });
     }
 
