@@ -8,12 +8,12 @@
                     <p>{{ $country->season_end }}</p>
 
                     <div class="flex gap-3">
-                        <a href="{{ route('edit-back-country', $country) }}">
+                        <a href="{{ route('admin-countries-edit', $country) }}">
                             <x-primary-button>
                                 {{ __('Edit') }}
                             </x-primary-button>
                         </a>
-                        <form action="{{ route('delete-back-country', $country) }}" method="post">
+                        <form action="{{ route('admin-countries-delete', $country) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <x-primary-button>

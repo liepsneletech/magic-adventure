@@ -9,12 +9,12 @@
                     <img src="{{ asset($hotel->image) }}" />
 
                     <div class="flex gap-3">
-                        <a href="{{ route('edit-back-hotel', $hotel) }}">
+                        <a href="{{ route('admin-hotels-edit', $hotel) }}">
                             <x-primary-button>
                                 {{ __('Edit') }}
                             </x-primary-button>
                         </a>
-                        <form action="{{ route('delete-back-hotel', $hotel) }}" method="post">
+                        <form action="{{ route('admin-hotels-delete', $hotel) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <x-primary-button>

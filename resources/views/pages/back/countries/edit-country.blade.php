@@ -1,7 +1,7 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-28">
         <div class="container">
-            <form method="POST" action="{{ route('update-back-country', $country) }}" class="w-1/3 mx-auto">
+            <form method="POST" action="{{ route('admin-countries-update', $country) }}" class="w-1/3 mx-auto">
                 @csrf
                 @method('PUT')
 

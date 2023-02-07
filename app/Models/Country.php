@@ -13,8 +13,13 @@ class Country extends Model
 
     public $timestamps = false;
 
-    public function countryHotels()
+    public function hotels()
     {
-        return $this->hasMany(Hotel::class, 'country_id', 'id');
+        return $this->hasMany(Hotel::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

@@ -12,7 +12,7 @@ class FrontController extends Controller
     {
         if (auth()->check()) {
             if (auth()->user()->role == User::ROLES['admin']) {
-                return redirect()->route('show-back-orders');
+                return redirect()->route('admin-orders-index');
             }
             if (auth()->user()->role == User::ROLES['customer']) {
                 return redirect()->route('home');

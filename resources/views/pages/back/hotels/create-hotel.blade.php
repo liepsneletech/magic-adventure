@@ -1,6 +1,6 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-12">
-        <form method="POST" action="{{ route('store-back-hotel') }}" class="w-1/3 mx-auto" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin-hotels-store') }}" class="w-1/3 mx-auto" enctype="multipart/form-data">
             @csrf
 
             <x-input-label for="country" :value="__('Šalis')" />

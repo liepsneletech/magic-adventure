@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\Validator;
 class HotelController extends Controller
 {
 
-    public function indexHotel()
+    public function index()
     {
         $hotels = Hotel::all();
-        return view('pages.back.hotels', compact('hotels'));
+        return view('pages.back.hotels.hotels', compact('hotels'));
     }
 
-    public function createHotel()
+    public function create()
     {
         $countries = Country::all();
-        return view('pages.back.create-hotel', compact('countries'));
+        return view('pages.back.hotels.create-hotel', compact('countries'));
     }
 
-    public function storeHotel(Request $request)
+    public function store(Request $request)
     {
         $hotel = new Hotel;
 
@@ -70,13 +70,13 @@ class HotelController extends Controller
         return redirect()->back()->with('success', 'Sėkmingai pridėjote viešbutį!');
     }
 
-    public function editHotel(Hotel $hotel, Country $country)
+    public function edit(Hotel $hotel, Country $country)
     {
         $countries = Country::all();
-        return view('pages.back.edit-hotel', compact('hotel', 'countries', 'country'));
+        return view('pages.back.hotels.edit-hotel', compact('hotel', 'countries', 'country'));
     }
 
-    public function updateHotel(Request $request, Hotel $hotel)
+    public function update(Request $request, Hotel $hotel)
     {
         $validator = Validator::make(
             $request->all(),
@@ -101,7 +101,7 @@ class HotelController extends Controller
         return redirect()->back()->with('success', 'Sėkmingai atnaujinote šalį');
     }
 
-    public function deleteHotel(Hotel $hotel)
+    public function delete(Hotel $hotel)
     {
         $hotel->delete();
         return redirect()->back()->with('success', 'Sėkmingai ištrynėte viešbutį');

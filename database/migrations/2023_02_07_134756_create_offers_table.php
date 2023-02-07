@@ -15,12 +15,9 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('country');
-            $table->string('hotel');
-            $table->text('desc');
-            $table->string('image');
-            $table->id('price');
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
+            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
+            $table->mediumInteger('price')->unsigned();
         });
     }
 

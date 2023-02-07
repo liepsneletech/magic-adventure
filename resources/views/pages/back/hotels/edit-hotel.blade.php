@@ -1,6 +1,6 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-12">
-        <form method="POST" action="{{ route('update-back-hotel', $hotel) }}" class="w-1/3 mx-auto"
+        <form method="POST" action="{{ route('admin-hotels-update', $hotel) }}" class="w-1/3 mx-auto"
             enctype="multipart/form-data">
             @csrf
             @method('PUT')
