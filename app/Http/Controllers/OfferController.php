@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
-    public function index()
+    public function index(Offer $offer)
     {
-        return view('pages.back.offers.offers');
+        $offers = Offer::all();
+
+        return view('pages.back.offers.offers', compact('offers'));
     }
 
     public function create(Offer $offer)
@@ -21,14 +23,35 @@ class OfferController extends Controller
         return view('pages.back.offers.create-offer', compact('countries', 'hotels'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return redirect()->back()->with('success', 'Sėkmingai pridėjote viešbutį!');
+        $incomingFields = $request->validate(
+            [
+                'title' => ['required'],
+                'travel_start' => ['required'],
+                'travel_end' => ['required'],
+                'price' => ['required'],
+                'hotel_id' => ['required'],
+                'country_id' => ['required'],
+            ],
+            [
+                'title.required' => 'Pasiūlymo pavadinimo laukelis privalomas',
+                'travel_start.required' => 'Kelionės pradžios laukelis privalomas',
+                'travel_end.required' => 'Kelionės pabaigos laukelis privalomas',
+                'price.required' => 'Kainos laukelis privalomas',
+                'hotel.required' => 'Privaloma pasirinkti viešbutį',
+                'country.required' => 'Privaloma pasirinkti šalį',
+            ]
+        );
+
+        Offer::create($incomingFields);
+
+        return redirect()->back()->with('success', 'Sėkmingai pridėjote pasiūlymą!');
     }
 
     public function edit()
     {
-        return view('pages.back.hotels.edit-hotel', compact('hotel', 'countries', 'country', 'offer'));
+        return view('pages.back.offers.edit-offer', compact('hotel', 'countries', 'country', 'offer'));
     }
 
     public function update()
@@ -36,7 +59,9 @@ class OfferController extends Controller
         return redirect()->back()->with('success', 'Sėkmingai atnaujinote šalį');
     }
 
-    public function delete()
+    public function delete(Offer $offer)
     {
+        $offer->delete();
+        return redirect()->back()->with('success', 'Sėkmingai ištrynėte pasiūlymą');
     }
 }

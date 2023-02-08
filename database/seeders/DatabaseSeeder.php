@@ -47,21 +47,5 @@ class DatabaseSeeder extends Seeder
             'season_start' => '2023-05-20',
             'season_end' => '2023-09-14',
         ]);
-
-        DB::table('hotels')->insert([
-            'country_name' => 'Portugalija',
-        ]);
-
-        DB::table('hotels')->insert([
-            'country_name' => 'Makedonija',
-        ]);
-
-        DB::table('hotels')->insert([
-            'country_name' => 'Portugalija',
-        ]);
-
-        DB::table('hotels')->insert([
-            'country_name' => 'Brazilija',
-        ]);
     }
 }

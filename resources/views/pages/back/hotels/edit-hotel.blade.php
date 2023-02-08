@@ -35,7 +35,7 @@
 
 
 
-                <div class="p-5 border border-green-600 rounded-lg mb-5 w-1/3">
+                <div class="p-5 border border-green-400 rounded-lg mb-5 w-1/3">
                     <img src="{{ asset($hotel->image) }}" class="mb-5" />
 
                     <div class="flex gap-2 px-3 items-center bg-green-600 rounded-md">

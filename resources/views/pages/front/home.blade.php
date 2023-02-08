@@ -5,7 +5,7 @@
             </h1>
             <p class="text-white font-light text-md font-['Roboto']">Unikaliausi viešbučiai visame pasaulyje</p>
             <a href="{{ route('admin-offers-index') }}"
-                class="bg-pink-700 py-3 px-4 text-white rounded-md mb-3 flex uppercase text-s font-semibold tracking-widest drop-shadow-md hover:bg-pink-800"><span
+                class="bg-pink-700 py-3 px-4 text-white rounded-md mb-3 flex gap-1 uppercase text-s font-semibold tracking-widest drop-shadow-md hover:bg-pink-800"><span
                     class="material-symbols-rounded">
                     magic_button
                 </span>

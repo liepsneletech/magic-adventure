@@ -9,7 +9,7 @@ class Offer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'price', 'country_id', 'hotel_id'];
+    protected $fillable = ['title', 'travel_start', 'travel_end', 'price', 'country_id', 'hotel_id'];
 
     public $timestamps = false;
 
