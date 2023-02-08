@@ -1,31 +1,43 @@
 <x-back-layout>
-    <div class=" bg-gray-100 min-h-screen pt-28">
-        <div class="container flex flex-col gap-5">
-            @forelse ($hotels as $hotel)
-                <div class="grid grid-cols-6 items-center justify-between gap-5 mx-auto max-w-fit">
-                    <p>{{ $hotel->hotelCountry->country_name }}</p>
-                    <p>{{ $hotel->title }}</p>
-                    <p>{{ $hotel->desc }}</p>
-                    <img src="{{ asset($hotel->image) }}" />
+    <div class=" bg-gray-100 min-h-screen py-12">
+        <div class="container">
+            <h1 class="text-center text-green-500 mb-8 text-4xl font-['Bebas_Neue']">Viešbučiai
+            </h1>
+            <div class="rounded-lg grid grid-cols-2 gap-8">
+                @forelse ($hotels as $hotel)
+                    <div
+                        class="bg-white rounded-lg p-8 items-center justify-between gap-5 mx-auto max-w-fit drop-shadow-sm">
+                        <h2 class="text-green-500 mb-3 text-2xl font-['Bebas_Neue']">{{ $hotel->title }}</h2>
+                        <div class="flex
+                            gap-5 mb-5 items-start">
+                            <img src="{{ asset($hotel->image) }}" class="w-1/2 h-auto" />
+                            <div>
+                                <p class="mb-3 font-bold text-gray-700 text-lg font-['Roboto']">
+                                    {{ $hotel->hotelCountry->country_name }}
+                                </p>
+                                <p class="text-sm text-gray-600">{{ substr($hotel->desc, 0, 230) . '...' }}</p>
+                            </div>
+                        </div>
 
-                    <div class="flex gap-3">
-                        <a href="{{ route('admin-hotels-edit', $hotel) }}">
-                            <x-primary-button>
-                                {{ __('Edit') }}
-                            </x-primary-button>
-                        </a>
-                        <form action="{{ route('admin-hotels-delete', $hotel) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <x-primary-button>
-                                {{ __('Delete') }}
-                            </x-primary-button>
-                        </form>
+                        <div class="flex gap-3">
+                            <a href="{{ route('admin-hotels-edit', $hotel) }}">
+                                <x-primary-button class="bg-green-500 hover:bg-green-400">
+                                    {{ __('Redaguoti') }}
+                                </x-primary-button>
+                            </a>
+                            <form action="{{ route('admin-hotels-delete', $hotel) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <x-primary-button>
+                                    {{ __('Ištrinti') }}
+                                </x-primary-button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            @empty
-                <p>Nepridėtas nė vienas viešbutis.</p>
-            @endforelse
+                @empty
+                    <p class="text-center">Nepridėtas nė vienas viešbutis.</p>
+                @endforelse
+            </div>
         </div>
     </div>
 </x-back-layout>

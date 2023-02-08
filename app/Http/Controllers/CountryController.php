@@ -11,12 +11,12 @@ class CountryController extends Controller
     public function index(Country $country)
     {
         $countries = Country::all();
-        return view('pages.back.countries.countries', compact('countries'));
+        return view('pages.back.countries.countries', compact('countries', 'country'));
     }
 
     public function create()
     {
-        return view('pages.back.create-country');
+        return view('pages.back.countries.create-country');
     }
 
     public function store(Request $request)

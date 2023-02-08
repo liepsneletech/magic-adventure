@@ -1,7 +1,7 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-28">
         <div class="container">
-            <form method="POST" action="{{ route('store-back-country') }}" class="w-1/3 mx-auto">
+            <form method="POST" action="{{ route('admin-countries-store') }}" class="w-1/3 mx-auto">
                 @csrf
 
                 <x-input-label for="country" :value="__('Šalies pavadinimas')" />

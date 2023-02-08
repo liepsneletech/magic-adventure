@@ -3,6 +3,10 @@
         <form method="POST" action="{{ route('admin-offers-store') }}" class="w-1/3 mx-auto" enctype="multipart/form-data">
             @csrf
 
+            <x-input-label for="title" :value="__('Pavadinimas')" />
+            <x-text-input id="title" class="block mt-1 mb-3 w-full" type="text" name="title" :value="old('title')"
+                autofocus />
+
             <x-input-label for="country" :value="__('Šalis')" />
             <x-select-input id="country" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="country_id"
                 :value="old('country_id')" required autofocus>
@@ -24,15 +28,15 @@
             </x-select-input>
 
             <x-input-label for="season" :value="__('Kelionės pradžia')" />
-            <x-text-input id="season" class="block mt-1 w-full mb-2" type="date" name="season_start"
-                :value="old('season')" autofocus />
+            <x-text-input id="season" class="block mt-1 w-full mb-3" type="date" name="" :value="old('season')"
+                autofocus />
 
             <x-input-label for="season" :value="__('Kelionės pabaiga')" />
-            <x-text-input id="season" class="block mt-1 w-full" type="date" name="season_end" :value="old('season')"
+            <x-text-input id="season" class="block mt-1 mb-3 w-full" type="date" name="" :value="old('season')"
                 autofocus />
 
             <x-input-label for="price" :value="__('Kaina')" />
-            <x-text-input id="price" class="block mt-1 w-full" type="text" name="price" :value="old('price')"
+            <x-text-input id="price" class="block mt-1 mb-5 w-full" type="text" name="price" :value="old('price')"
                 autofocus />
 
             <x-primary-button>

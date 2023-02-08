@@ -92,6 +92,23 @@ class HotelController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
+
+        if ($request->file('image')) {
+            $image = $request->file('image');
+
+            $ext = $image->getClientOriginalExtension();
+            $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $file = $name . '-' . rand(100000, 999999) . '.' . $ext;
+
+            $manager = new ImageManager(['driver' => 'GD']);
+            $image = $manager->make($image);
+            $image->resize(null, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            })->crop(500, 300);
+            $image->save(public_path() . '/uploads/hotels/' . $file);
+            $hotel->image = '/uploads/hotels/' . $file;
+        }
+
         $hotel->country_id = $request->country_id;
         $hotel->title = $request->title;
         $hotel->desc = $request->desc;

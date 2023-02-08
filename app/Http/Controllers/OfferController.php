@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Offer;
 use App\Models\Country;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class OfferController extends Controller
         return view('pages.back.offers.offers');
     }
 
-    public function create()
+    public function create(Offer $offer)
     {
         $countries = Country::all();
         $hotels = Hotel::all();
@@ -27,7 +28,7 @@ class OfferController extends Controller
 
     public function edit()
     {
-        return view('pages.back.hotels.edit-hotel', compact('hotel', 'countries', 'country'));
+        return view('pages.back.hotels.edit-hotel', compact('hotel', 'countries', 'country', 'offer'));
     }
 
     public function update()
