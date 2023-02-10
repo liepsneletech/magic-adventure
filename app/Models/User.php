@@ -13,9 +13,10 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const ROLES = [
-        'customer' => 0,
-        'manager' => 1,
-        'admin' => 2
+        'guest' => 0,
+        'customer' => 1,
+        'manager' => 2,
+        'admin' => 3
     ];
 
     /**

@@ -18,13 +18,13 @@ class RolesAuth
     public function handle(Request $request, Closure $next, $roles)
     {
         if (!auth()->check()) {
-            return redirect('/login');
+            $userRole = User::ROLES['guest'];
+        } else {
+            $userRole = auth()->user()->role;
         }
 
         $middlewareRoles = explode('|', $roles);
         $middlewareRoles = array_map(fn ($role) => User::ROLES[$role], $middlewareRoles);
-
-        $userRole = auth()->user()->role;
 
         if (in_array($userRole, $middlewareRoles)) {
             return $next($request);

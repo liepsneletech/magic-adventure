@@ -1,16 +1,15 @@
-<x-back-layout>
+<x-front-layout>
     <div class="bg-gray-100 min-h-screen py-12">
         <div class="container">
-            <div class="grid grid-cols-1 items-center">
-                <h1
-                    class="text-center text-green-500 mb-8 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
-                    Pasiūlymai
-                </h1>
-                <a href="{{ route('admin-offers-create') }}"
-                    class="bg-pink-700 hover:bg-pink-800 py-2 px-3 text-white rounded-md text-right mb-3 inline-block uppercase text-xs font-semibold tracking-widest justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
-                    {{ __('+ Pridėti') }}
-                </a>
-            </div>
+            <h1
+                class="text-center text-green-500 mb-8 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
+                Pasiūlymai
+            </h1>
+
+            <a href="{{ route('admin-offers-create') }}"
+                class="bg-pink-700 hover:bg-pink-800 py-2 px-3 text-white rounded-md text-right mb-3 inline-block uppercase text-xs font-semibold tracking-widest justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
+                {{ __('+ Filtrai') }}
+            </a>
 
             <div class="rounded-lg grid grid-cols-2 gap-8">
                 @forelse ($offers as $offer)
@@ -30,21 +29,6 @@
                                 </p>
                             </div>
                         </div>
-
-                        <div class="flex gap-3">
-                            <a href="{{ route('admin-offers-edit', $offer) }}">
-                                <x-primary-button class="bg-green-500 hover:bg-green-400">
-                                    {{ __('Redaguoti') }}
-                                </x-primary-button>
-                            </a>
-                            <form action="{{ route('admin-offers-delete', $offer) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <x-primary-button>
-                                    {{ __('Ištrinti') }}
-                                </x-primary-button>
-                            </form>
-                        </div>
                     </div>
                 @empty
                     <p>Nepridėtas nė vienas pasiūlymas.</p>
@@ -52,4 +36,4 @@
             </div>
         </div>
     </div>
-</x-back-layout>
+</x-front-layout>

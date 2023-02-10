@@ -46,7 +46,7 @@
 
             <x-input-label for="travel_start" :value="__('Kelionės pradžia')" />
             <x-text-input id="travel_start" class="block mt-1 w-full mb-3" type="date" name="travel_start"
-                :value="old('travel_start')" autofocus min="{{ $country->season_start }}" max="{{ $country->season_end }}" />
+                :value="old('travel_start')" autofocus />
 
             @error('travel_start')
                 <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>

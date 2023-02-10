@@ -14,7 +14,7 @@
             <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                 {{ __('Pradžia') }}
             </x-nav-link>
-            <x-nav-link :href="route('index')" :active="request()->routeIs('hotels')">
+            <x-nav-link :href="route('offers')" :active="request()->routeIs('offers')">
                 {{ __('Pasiūlymai') }}
             </x-nav-link>
             <x-nav-link :href="route('index')" :active="request()->routeIs('about')">
@@ -50,6 +50,10 @@
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
                                 {{ __('Paskyra') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Užsakymai') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -98,6 +102,10 @@
                         <div class="mt-3 space-y-1">
                             <x-responsive-nav-link :href="route('profile.edit')">
                                 {{ __('Paskyra') }}
+                            </x-responsive-nav-link>
+
+                            <x-responsive-nav-link :href="route('profile.edit')">
+                                {{ __('Užsakymai') }}
                             </x-responsive-nav-link>
 
                             <!-- Authentication -->

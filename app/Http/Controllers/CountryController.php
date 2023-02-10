@@ -71,6 +71,12 @@ class CountryController extends Controller
 
     public function delete(Country $country)
     {
+        // $countryHotels = $country->hotels;
+
+        // foreach ($countryHotels as $hotel) {
+        //     $hotel->deletePhoto();
+        // }
+
         $country->delete();
         return redirect()->back()->with('success', 'Sėkmingai ištrynėte šalį');
     }

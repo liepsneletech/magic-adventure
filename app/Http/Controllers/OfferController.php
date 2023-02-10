@@ -10,23 +10,27 @@ use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
-    public function index(Offer $offer)
+    public function index()
     {
         $offers = Offer::all();
 
-        // $offerStartDate = $offer->travel_start;
-        // $offerEndDate = $offer->travel_end;
+        foreach ($offers as $offer) {
+            $start = Carbon::parse($offer->travel_start);
+            $end = Carbon::parse($offer->travel_end);
 
-        // $duration = $offerStartDate->diffInDays($offerEndDate, false);
+            $duration = $start->diffInDays($end) + 1;
+            $offer->duration = $duration;
+        }
 
         return view('pages.back.offers.offers', compact('offers'));
     }
 
-    public function create(Offer $offer)
+    public function create(Offer $offer, Request $request)
     {
         $countries = Country::all();
         $hotels = Hotel::all();
-        return view('pages.back.offers.create-offer', compact('countries', 'hotels'));
+
+        return view('pages.back.offers.create-offer', compact('countries', 'hotels', 'offer'));
     }
 
     public function store(Request $request)

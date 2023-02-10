@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:customer');
+Route::get('/offers', [FrontController::class, 'offers'])->name('offers')->middleware('roles:guest|customer');
 
 Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders-index');
