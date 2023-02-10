@@ -1,11 +1,13 @@
 <x-back-layout>
     <div class=" bg-gray-100 min-h-screen py-12">
         <div class="container">
-            <div class="flex justify-between items-center">
-                <h1 class="text-green-500 mb-8 text-4xl font-['Bebas_Neue']">Viešbučiai
+            <div class="grid grid-cols-1 items-center mb-7">
+                <h1
+                    class="text-green-500 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
+                    Viešbučiai
                 </h1>
                 <a href="{{ route('admin-hotels-create') }}"
-                    class="bg-pink-700 hover:bg-pink-800 py-2 px-3 text-white rounded-md text-right mb-3 inline-block uppercase text-xs font-semibold tracking-widest">
+                    class="bg-pink-700 hover:bg-pink-800 py-2 px-3  text-white rounded-md text-right inline-block uppercase text-xs font-semibold tracking-widest justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
                     {{ __('+ Pridėti') }}
                 </a>
             </div>

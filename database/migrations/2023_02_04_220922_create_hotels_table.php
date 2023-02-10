@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 50);
             $table->text('desc');
-            $table->string('image', 200)->nullable();
+            $table->string('image', 200);
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
         });
     }

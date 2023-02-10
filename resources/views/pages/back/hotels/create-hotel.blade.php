@@ -6,7 +6,7 @@
             <x-input-label for="country" :value="__('Šalis')" />
             <x-select-input id="country" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="country_id"
                 :value="old('country_id')" required autofocus>
-                <option>-- Šalis nepasirinkta</option>
+                <option selected disabled>-- Šalis nepasirinkta</option>
                 @forelse ($countries as $country)
                     <option value="{{ $country->id }}">{{ $country->country_name }}</option>
                 @empty

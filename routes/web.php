@@ -20,8 +20,9 @@ Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(functio
     Route::get('/offers', [OfferController::class, 'index'])->name('offers-index');
     Route::get('/offers/add', [OfferController::class, 'create'])->name('offers-create');
     Route::post('/offers/add', [OfferController::class, 'store'])->name('offers-store');
-    Route::get('/offers/edit/{offer}', [OfferController::class, 'index'])->name('offers-edit');
-    Route::put('/offers/edit/{offer}', [OfferController::class, 'index'])->name('offers-update');
+    Route::get('/offers/add/{country}', [OfferController::class, 'showCountryHotels'])->name('offers-country-hotels');
+    Route::get('/offers/edit/{offer}', [OfferController::class, 'edit'])->name('offers-edit');
+    Route::put('/offers/edit/{offer}', [OfferController::class, 'update'])->name('offers-update');
     Route::delete('/offers/delete/{offer}', [OfferController::class, 'delete'])->name('offers-delete');
 
     Route::get('/hotels', [HotelController::class, 'index'])->name('hotels-index');
