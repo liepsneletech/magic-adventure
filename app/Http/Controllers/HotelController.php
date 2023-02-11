@@ -54,9 +54,9 @@ class HotelController extends Controller
 
             $manager = new ImageManager(['driver' => 'GD']);
             $image = $manager->make($image);
-            $image->resize(500, null, function ($constraint) {
+            $image->resize(700, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300);
+            })->crop(700, 400);
             $image->save(public_path() . '/uploads/hotels/' . $file);
             $hotel->image = '/uploads/hotels/' . $file;
         }
@@ -92,6 +92,7 @@ class HotelController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
+
         if ($request->file('image')) {
             $image = $request->file('image');
 
@@ -101,9 +102,9 @@ class HotelController extends Controller
 
             $manager = new ImageManager(['driver' => 'GD']);
             $image = $manager->make($image);
-            $image->resize(500, null, function ($constraint) {
+            $image->resize(700, null, function ($constraint) {
                 $constraint->aspectRatio();
-            })->crop(500, 300);
+            })->crop(700, 400);
             $image->save(public_path() . '/uploads/hotels/' . $file);
             $hotel->image = '/uploads/hotels/' . $file;
         }

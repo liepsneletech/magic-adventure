@@ -29,7 +29,7 @@ class FrontController extends Controller
         return view('pages.front.home');
     }
 
-    public function offers()
+    public function offers(Request $request)
     {
         $offers = Offer::all();
 
@@ -41,6 +41,17 @@ class FrontController extends Controller
             $offer->duration = $duration;
         }
 
-        return view('pages.front.offers', compact('offers'));
+        $offers = match ($request->sort ?? '') {
+            'asc_price' => $offers->orderBy('price'),
+            'dsc_price' => $offers->orderBy('price', 'desc'),
+            default => $offers->orderBy('price')
+        };
+
+        $sortSelect = Offer::SORT;
+        $sortShow = isset(Offer::SORT[$request->sort]) ? $request->sort : '';
+
+        $offers = $offers->get();
+
+        return view('pages.front.offers', compact('offers', 'sortSelect', 'sortShow'));
     }
 }

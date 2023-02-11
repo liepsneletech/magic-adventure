@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
+use Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
 {
     use HasFactory;
+
+    const SORT = [
+        'asc_price' => 'Pigiausios viršuje',
+        'dsc_price' => 'Brangiausios viršuje',
+    ];
 
     protected $fillable = ['title', 'travel_start', 'travel_end', 'price', 'country_id', 'hotel_id'];
 

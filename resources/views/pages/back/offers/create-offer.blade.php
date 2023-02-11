@@ -16,28 +16,17 @@
                 <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
             @enderror
 
-            <x-input-label for="country" :value="__('Šalis')" />
-            <x-select-input id="country" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="country_id"
-                :value="old('country_id')" required autofocus>
-                <option selected disabled>-- Šalis nepasirinkta</option>
-                @forelse ($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->country_name }}</option>
-                @empty
-                @endforelse
-            </x-select-input>
-
-            @error('country_id')
-                <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
-            @enderror
-
-            <x-input-label for="hotel" :value="__('Viešbutis')" />
-            <x-select-input id="hotel" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="hotel_id"
-                :value="old('hotel')" required autofocus>
+            <x-input-label for="hotel_id" :value="__('Viešbutis')" />
+            <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="hotel_id"
+                :value="old('hotel_id')" required autofocus>
                 <option selected disabled>-- Viešbutis nepasirinktas</option>
-                @forelse ($hotels as $hotel)
-                    <option value="{{ $hotel->id }}">{{ $hotel->title }}</option>
-                @empty
-                @endforelse
+                @forelse ($countries as $country)
+                    <optgroup label="{{ $country->country_name }}">
+                        @foreach ($country->hotels as $hotel)
+                            <option value="{{ $hotel->id }}">{{ $hotel->title }}</option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
             </x-select-input>
 
             @error('hotel_id')
@@ -47,6 +36,7 @@
             <x-input-label for="travel_start" :value="__('Kelionės pradžia')" />
             <x-text-input id="travel_start" class="block mt-1 w-full mb-3" type="date" name="travel_start"
                 :value="old('travel_start')" autofocus />
+
 
             @error('travel_start')
                 <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>

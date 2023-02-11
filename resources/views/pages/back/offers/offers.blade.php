@@ -1,13 +1,13 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen py-12">
         <div class="container">
-            <div class="grid grid-cols-1 items-center">
+            <div class="grid grid-cols-1 items-center mb-8 ">
                 <h1
-                    class="text-center text-green-500 mb-8 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
+                    class="text-center text-green-500 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
                     Pasiūlymai
                 </h1>
                 <a href="{{ route('admin-offers-create') }}"
-                    class="bg-pink-700 hover:bg-pink-800 py-2 px-3 text-white rounded-md text-right mb-3 inline-block uppercase text-xs font-semibold tracking-widest justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
+                    class="bg-pink-700 hover:bg-pink-800 py-2 px-3 text-white rounded-md text-right inline-block uppercase text-xs font-semibold tracking-widest justify-self-end col-start-1 col-end-2 row-start-1 row-end-2">
                     {{ __('+ Pridėti') }}
                 </a>
             </div>
@@ -24,7 +24,7 @@
                                 <p class="text-gray-800">Šalis: {{ $offer->country->country_name }}</p>
                                 <p class="underline text-gray-700">{{ $offer->travel_start }} -
                                     {{ $offer->travel_end }}</p>
-                                <p class="text-gray-800 mb-8">Trukmė: {{ $offer->duration }}</p>
+                                <p class="text-gray-800 mb-6">Trukmė: {{ $offer->duration }}</p>
 
                                 <p class="text-green-500 mb-3 text-2xl font-['Bebas_Neue']">{{ $offer->price }} &euro;
                                 </p>
