@@ -66,9 +66,9 @@ input.search-input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: unset;
-    background: url("../img/angle-down-solid.svg") #e2ebf4 no-repeat
+    background: url("/public/assets/img/angle-down-solid.svg") #e2ebf4 no-repeat
         calc(100% - 12px) !important;
-    background-size: 10% !important;
+    background-size: 15px !important;
 }
 
 /*For IE*/
