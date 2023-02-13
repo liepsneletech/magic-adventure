@@ -1,15 +1,13 @@
 @inject('cats', 'App\Services\CatsService')
-
-<h2>Šalys</h2>
 <div>
     @forelse($cats->get() as $country)
         <a href="{{ route('show-cats-offers', $country) }}">
-            <h3>
+            <h3 class="text-lg text-pink-600 font-bold">
                 {{ $country->country_name }}
-                <div>[{{ $country->offers()->count() }}]</div>
+                <span>({{ $country->offers()->count() }})</span>
             </h3>
-            {{-- </a> --}}
-        @empty
-            <p>Nėra sukurtų kategorijų</p>
+        </a>
+    @empty
+        <p>Nėra sukurtų kategorijų</p>
     @endforelse
 </div>
