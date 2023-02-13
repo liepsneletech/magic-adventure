@@ -30,7 +30,7 @@
                 <i class="fa-solid fa-basket-shopping text-gray-500 flex self-center pb-1 text-lg mr-1"></i>
                 <p class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">0</p>
                 {{-- <p class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">{{ $cart->count }}</p> --}}
-                <p class="ml-2 text-gray-600">3500.00 &euro</p>
+                <p class="ml-2 text-gray-600">3500.00 &euro;</p>
                 {{-- <p class="ml-2 text-gray-600">{{ $cart->total }}</p> --}}
 
                 <div class="nav-front-logged-in">
