@@ -8,6 +8,6 @@ class CatsService
 {
   public function get()
   {
-    return Country::all();
+    return Country::all()->sortBy('country_name');
   }
 }

@@ -19,20 +19,20 @@ class Offer extends Model
 
     public $timestamps = false;
 
-    public function toSearchableArray()
-    {
-        return [
-            'hotel_id' => $this->hotel_id,
-        ];
-    }
-
     public function hotel()
     {
-        return $this->belongsTo(Hotel::class);
+        return $this->belongsTo(Hotel::class, 'hotel_id', 'id');
     }
 
     public function country()
     {
         return $this->belongsTo(Country::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'hotel_id' => $this->hotel_id,
+        ];
     }
 }

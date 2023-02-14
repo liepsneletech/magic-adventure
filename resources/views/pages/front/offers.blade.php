@@ -35,19 +35,17 @@
                 <form class="search-form" action="{{ route('offers') }}">
                     <input type="text" placeholder="Ieškoti..."
                         class="search-input rounded-[20px] border-none focus:ring-0 focus:ring-offset-0" name="s"
-                        value="@if (isset($offers) && count($offers) === 0) {{ $searchTerm }} @endif">
+                        value="@if (isset($offers) && count($offers) == 0) {{ $searchTerm }} @endif">
                     <button class=" text-white bg-gray-400 hover:bg-pink-700 py-[10.5px] px-[30px] rounded-r-[20px]"><i
                             class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
 
-
             <div class="flex flex-nowrap gap-16">
                 @include('components.cats')
-                <div class="rounded-lg grid grid-cols-2 gap-8">
+                <div class="rounded-lg grid grid-cols-3 gap-8">
                     @forelse ($offers as $offer)
-                        <div
-                            class="bg-white bg-no-repeat rounded-lg p-5 items-center justify-between gap-5 drop-shadow-sm">
+                        <div class="bg-white rounded-lg p-5 items-center justify-between gap-5 drop-shadow-sm">
                             <img src="{{ $offer->hotel->image }}" alt="Hotel image" class="mb-5">
                             <h2 class="text-green-500 mb-3 text-2xl font-['Bebas_Neue']">{{ $offer->title }}</h2>
                             <div class="grid grid-cols-1 gap-5 items-start">
@@ -59,30 +57,41 @@
                                         {{ $offer->travel_end }}</p>
                                     <p class="text-gray-800 mb-4">Trukmė: {{ $offer->duration }} d.</p>
                                 </div>
-                                <div class="flex align-end justify-between">
-                                    <p class="text-green-500 text-3xl font-['Bebas_Neue'] self-end">
-                                        {{ $offer->price }}
-                                        &euro;
-                                    </p>
-                                    @auth
-                                        <form action="{{ route('add-to-cart') }}" method="post" class="flex justify-end">
-                                            @csrf
+
+                                @auth
+                                    <form action="{{ route('add-to-cart') }}" method="post"
+                                        class="flex align-center justify-between gap-4 flex-nowrap">
+                                        @csrf
+                                        <p class="text-green-500 text-3xl font-['Bebas_Neue']">
+                                            {{ $offer->price }}
+                                            &euro;
+                                        </p>
+                                        <div class="flex align-center gap-3 ">
                                             <input type="number" min="1" name="count" value="1"
-                                                class="mb-3 rounded-full bg-gray-200 border-0 focus:ring-0 focus:ring-offset-0">
+                                                class="text-center w-[60px] rounded-full bg-gray-200 border-0 focus:ring-0 focus:ring-offset-0">
                                             <input type="hidden" name="product" value="{{ $offer->id }}">
-                                            <a href="{{ route('register') }}"
-                                                class="bg-pink-700 py-3 px-4  text-white rounded-full flex gap-1 uppercase text-sm font-semibold tracking-widest hover:bg-pink-800">
-                                                {{ __('Į krepšelį') }}
-                                            </a>
-                                        </form>
-                                    @endauth
-                                    @guest
+                                            <button
+                                                class="bg-pink-700 p-3  text-white rounded-full flex gap-1 uppercase text-xs font-semibold tracking-widest hover:bg-pink-800"
+                                                type="submit">
+                                                Į krepšelį
+                                            </button>
+                                        </div>
+                                    </form>
+                                @endauth
+
+                                @guest
+                                    <div class="flex justify-between">
+                                        <p class="text-green-500 text-3xl font-['Bebas_Neue'] self-end">
+                                            {{ $offer->price }}
+                                            &euro;
+                                        </p>
                                         <a href="{{ route('register') }}"
-                                            class="bg-pink-700 py-3 px-4 text-white rounded-full flex gap-1 uppercase text-sm font-semibold tracking-widest hover:bg-pink-800">
+                                            class="bg-pink-700 py-3 px-4 text-white rounded-full flex gap-1 uppercase text-xs font-semibold tracking-widest hover:bg-pink-800">
                                             {{ __('Registruotis') }}
                                         </a>
-                                    @endguest
-                                </div>
+                                    </div>
+                                @endguest
+
                             </div>
 
                         </div>

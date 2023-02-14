@@ -94,8 +94,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Consectetur andera',
             'travel_start' => '2023-05-20',
             'travel_end' => '2023-05-26',
-            'country_id' => '3',
             'hotel_id' => '3',
+            'country_id' => '3',
             'price' => '2000',
         ]);
 
@@ -103,8 +103,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Gargantiua hannsen',
             'travel_start' => '2023-06-20',
             'travel_end' => '2023-07-03',
-            'country_id' => '2',
             'hotel_id' => '2',
+            'country_id' => '2',
             'price' => '3600',
         ]);
 
@@ -112,8 +112,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Kutura svanellia',
             'travel_start' => '2023-08-20',
             'travel_end' => '2023-08-26',
-            'country_id' => '1',
             'hotel_id' => '1',
+            'country_id' => '1',
             'price' => '1750',
         ]);
 
@@ -121,8 +121,8 @@ class DatabaseSeeder extends Seeder
             'title' => 'Mauris blandit',
             'travel_start' => '2023-07-20',
             'travel_end' => '2023-08-02',
-            'country_id' => '2',
             'hotel_id' => '2',
+            'country_id' => '1',
             'price' => '2200',
         ]);
     }

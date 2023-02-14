@@ -11,9 +11,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontController::class, 'index'])->name('index');
 Route::get('/home', [FrontController::class, 'home'])->name('home')->middleware('roles:customer');
 Route::get('/offers', [FrontController::class, 'offers'])->name('offers')->middleware('roles:guest|customer');
+Route::get('/cart', [FrontController::class, 'cart'])->name('cart');
+Route::post('/cart', [FrontController::class, 'updateCart'])->name('update-cart');
+Route::post('/make-order', [FrontController::class, 'makeOrder'])->name('make-order');
 
 Route::get('/offers/cats/{country}', [FrontController::class, 'showCatOffers'])->name('show-cats-offers');
-Route::post('/add-to-cart', [FrontController::class, 'addToCart'])->name('add-to-cart');
+Route::post('/add-to-cart', [FrontController::class, 'addToCart'])->name('add-to-cart')->middleware('roles:customer');
 
 Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders-index');

@@ -13,26 +13,17 @@
                 <x-text-input id="title" class="block mt-1 mb-3 w-full bg-gray-100" type="text" name="title"
                     :value="$offer->title" autofocus />
 
-                <x-input-label for="country" :value="__('Šalis')" />
-                <x-select-input id="country" class="block mt-1 w-full mb-3 text-gray-500 bg-gray-100" type="text"
-                    name="country_id" :value="old('country_id')" required autofocus>
-                    <option>-- Šalis nepasirinkta</option>
+                <x-input-label for="hotel_id" :value="__('Viešbutis')" />
+                <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 bg-gray-100" type="text" name="hotel_id"
+                    :value="old('hotel_id')" required autofocus>
+                    <option selected disabled>-- Viešbutis nepasirinktas</option>
                     @forelse ($countries as $country)
-                        <option value="{{ $country->id }}" @if ($country->id === $offer->country_id) selected @endif>
-                            {{ $offer->country->country_name }}</option>
-                    @empty
-                    @endforelse
-                </x-select-input>
-
-                <x-input-label for="hotel" :value="__('Viešbutis')" />
-                <x-select-input id="hotel" class="block mt-1 w-full mb-3 text-gray-500 bg-gray-100" type="text"
-                    name="hotel_id" :value="old('hotel')" required autofocus>
-                    <option>-- Viešbutis nepasirinktas</option>
-                    @forelse ($hotels as $hotel)
-                        <option value="{{ $hotel->id }}" @if ($hotel->id === $offer->hotel_id) selected @endif>
-                            {{ $hotel->title }}</option>
-                    @empty
-                    @endforelse
+                        <optgroup label="{{ $country->country_name }}">
+                            @foreach ($country->hotels as $hotel)
+                                <option value="{{ $hotel->id }}">{{ $hotel->title }}</option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
                 </x-select-input>
 
                 <x-input-label for="travel_start" :value="__('Kelionės pradžia')" />

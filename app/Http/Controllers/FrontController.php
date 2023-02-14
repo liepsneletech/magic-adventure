@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Hotel;
 use App\Models\Offer;
 use App\Models\Order;
 use App\Models\Country;
@@ -37,30 +38,29 @@ class FrontController extends Controller
     {
         if (!$request->s) {
             if ($request->country_id && $request->country_id != 'Pasirinkite šalį') {
-                $offers = Offer::where('country_id', $request->country_id);
+                $offers = Offer::where('country_id', $request->country_id)->get();
             } else {
-                $offers = Offer::where('country_id', '>', '0');
+                $offers = Offer::where('country_id', '>', '0')->get();
             }
 
-            if (!$request->sort) {
-                $offers = Offer::all();
-            } else {
-                if ($request->sort === 'asc_price') {
-                    $offers = $offers::orderBy('price')->get();
-                } else {
-                    $offers = $offers::orderBy('price', 'desc')->get();
-                }
-            }
+            $offers = match ($request->sort ?? '') {
+                'asc_price' => $offers->sortBy('price'),
+                'desc_price' => $offers->sortBy('price', 'desc'),
+                default => $offers,
+            };
         } else {
-            $offers = Offer::search($request->s);
+            $offers = Offer::search(Hotel::where('title', 'LIKE', '%' . $request->s . '%')?->first()?->id ?? 0)->get();
         }
-        foreach ($offers as $offer) {
-            $start = Carbon::parse($offer->travel_start);
-            $end = Carbon::parse($offer->travel_end);
 
-            $duration = $start->diffInDays($end) + 1;
-            $offer->duration = $duration;
+        foreach ($offers as $offer) {
+            if (!is_string($offer) && $offer !== null) {
+                $start = Carbon::parse($offer->travel_start);
+                $end = Carbon::parse($offer->travel_end);
+                $duration = $start->diffInDays($end) + 1;
+                $offer->duration = $duration;
+            }
         }
+
         $sortSelect = Offer::SORT;
         $sortShow = isset(Offer::SORT[$request->sort]) ? $request->sort : '';
 
@@ -69,10 +69,6 @@ class FrontController extends Controller
         $countryShow = $request->country_id ? $request->country_id : '';
 
         $searchTerm = $request->s;
-
-        $id = (int) $request->product;
-        $count = (int) $request->count;
-        $cart->add($id, $count);
 
         return view('pages.front.offers', compact('offers', 'sortSelect', 'sortShow', 'countries', 'countryShow', 'searchTerm'));
     }
@@ -91,7 +87,16 @@ class FrontController extends Controller
         $sortSelect = Offer::SORT;
         $sortShow = isset(Offer::SORT[$request->sort]) ? $request->sort : '';
 
-        return view('pages.front.offers', compact('offers', 'countries', 'countryShow', 'sortSelect', 'sortShow'));
+        foreach ($offers as $offer) {
+            $start = Carbon::parse($offer->travel_start);
+            $end = Carbon::parse($offer->travel_end);
+
+            $duration = $start->diffInDays($end) + 1;
+            $offer->duration = $duration;
+        }
+        $offer->duration = $duration;
+
+        return view('pages.front.offers', compact('offers', 'countries', 'countryShow', 'sortSelect', 'sortShow', 'duration'));
     }
 
     public function addToCart(Request $request, CartService $cart)
@@ -111,7 +116,6 @@ class FrontController extends Controller
 
     public function updateCart(Request $request, CartService $cart)
     {
-
         if ($request->delete) {
             $cart->delete($request->delete);
         } else {

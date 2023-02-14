@@ -22,7 +22,12 @@ class Hotel extends Model
     public function toSearchableArray()
     {
         return [
-            'hotel' => $this->title,
+            'title' => $this->title,
         ];
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

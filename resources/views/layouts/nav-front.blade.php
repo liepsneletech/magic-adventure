@@ -1,3 +1,5 @@
+@inject('cart', 'App\Services\CartService')
+
 <nav x-data="{ open: false }" class="border-b border-gray-100 py-4">
 
     <!-- Primary nav Menu -->
@@ -27,11 +29,52 @@
 
         @auth
             <div class="flex align-center">
-                <i class="fa-solid fa-basket-shopping text-gray-500 flex self-center pb-1 text-lg mr-1"></i>
-                <p class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">0</p>
-                {{-- <p class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">{{ $cart->count }}</p> --}}
-                <p class="ml-2 text-gray-600">3500.00 &euro;</p>
-                {{-- <p class="ml-2 text-gray-600">{{ $cart->total }}</p> --}}
+                <div class="sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="right" width="80">
+                        <x-slot name="trigger">
+                            <button class="flex">
+                                <i class="fa-solid fa-basket-shopping text-gray-500 flex self-center text-lg mr-1"></i>
+                                <span class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">{{ $cart->count }}
+                                </span>
+                                <span class="ml-2 text-gray-600">{{ $cart->total }} &euro;</span>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <form method="POST" action="{{ route('logout') }}"
+                                class="flex flex-col px-5 py-3 bg-green-500 text-white">
+                                @csrf
+                                @forelse($cart->list as $product)
+                                    <div
+                                        class="flex
+                                flex-nowrap justify-between border-b border-white border-opacity-30 py-2">
+                                        <div>
+                                            {{ $product->title }}
+                                            <b>x {{ $product->count }}</b>
+                                        </div>
+                                        <p>{{ $product->sum }} &euro;</p>
+                                    </div>
+                                @empty
+                                    <span class="dropdown-item">Krepšelis tuščias</span>
+                                @endforelse
+                                <div class="flex justify-between items-center pt-3">
+                                    <p>VISO:</p>
+                                    <p>{{ $cart->total }} &euro;</p>
+                                </div>
+                            </form>
+                            <div class="flex items-center justify-end gap-3 p-3">
+                                <a href="{{ route('register') }}"
+                                    class="border-green-500 border-2 py-2 px-3 text-green-500 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-green-500 hover:text-white">
+                                    {{ __('Krepšelis') }}
+                                </a>
+                                <a href="{{ route('register') }}"
+                                    class="border-pink-700 border-2 bg-pink-700 py-2 px-3 text-white rounded-full uppercase text-xs font-semibold tracking-widest hover:bg-pink-800">
+                                    {{ __('Pirkimas') }}
+                                </a>
+                            </div>
+                        </x-slot>
+                    </x-dropdown>
+                </div>
 
                 <div class="nav-front-logged-in">
                     <!-- Settings Dropdown -->

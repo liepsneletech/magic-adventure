@@ -1,12 +1,12 @@
 <x-back-layout>
     <div class="bg-gray-100 min-h-screen pt-12">
 
-        @if (session()->has('success'))
-            <p>{{ Session::get('success') }}</p>
-        @endif
-
         <form method="POST" action="{{ route('admin-offers-store') }}" class="w-1/3 mx-auto" enctype="multipart/form-data">
             @csrf
+
+            @if (session()->has('success'))
+                <p class="text-white bg-green-600 rounded-lg py-1 px-4 text-sm mb-5">{{ Session::get('success') }}</p>
+            @endif
 
             <x-input-label for="title" :value="__('Pavadinimas')" />
             <x-text-input id="title" class="block mt-1 mb-3 w-full" type="text" name="title" :value="old('title')"

@@ -42,7 +42,6 @@ class OfferController extends Controller
                 'travel_end' => ['required'],
                 'price' => ['required'],
                 'hotel_id' => ['required'],
-                'country_id' => ['required'],
             ],
             [
                 'title.required' => 'Pasiūlymo pavadinimo laukelis privalomas',
@@ -50,7 +49,6 @@ class OfferController extends Controller
                 'travel_end.required' => 'Kelionės pabaigos laukelis privalomas',
                 'price.required' => 'Kainos laukelis privalomas',
                 'hotel_id.required' => 'Privaloma pasirinkti viešbutį',
-                'country_id.required' => 'Privaloma pasirinkti šalį',
             ]
         );
 
