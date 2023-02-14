@@ -9,13 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
-    // public function getOrder_jsonAttribute($value)
-    // {
-    //     return json_decode($value);
-    // }
-
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
+    }
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class);
+    }
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
     }
 }

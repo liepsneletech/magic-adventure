@@ -35,4 +35,9 @@ class Offer extends Model
             'hotel_id' => $this->hotel_id,
         ];
     }
+
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

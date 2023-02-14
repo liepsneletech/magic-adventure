@@ -52,6 +52,8 @@ class OfferController extends Controller
             ]
         );
 
+        $incomingFields['country_id'] = Hotel::find($incomingFields['hotel_id'])->country->id;
+
         Offer::create($incomingFields);
 
         return redirect()->back()->with('success', 'Sėkmingai pridėjote pasiūlymą!');
@@ -73,7 +75,6 @@ class OfferController extends Controller
                 'travel_end' => ['required'],
                 'price' => ['required'],
                 'hotel_id' => ['required'],
-                'country_id' => ['required'],
             ],
             [
                 'title.required' => 'Pasiūlymo pavadinimo laukelis privalomas',
@@ -81,9 +82,10 @@ class OfferController extends Controller
                 'travel_end.required' => 'Kelionės pabaigos laukelis privalomas',
                 'price.required' => 'Kainos laukelis privalomas',
                 'hotel.required' => 'Privaloma pasirinkti viešbutį',
-                'country.required' => 'Privaloma pasirinkti šalį',
             ]
         );
+
+        $incomingFields['country_id'] = Hotel::find($incomingFields['hotel_id'])->country->id;
 
         $offer->update($incomingFields);
 

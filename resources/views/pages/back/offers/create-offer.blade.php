@@ -17,8 +17,8 @@
             @enderror
 
             <x-input-label for="hotel_id" :value="__('Viešbutis')" />
-            <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="hotel_id"
-                :value="old('hotel_id')" required autofocus>
+            <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500 bg-gray-100" type="text"
+                name="hotel_id" :value="old('hotel_id')" required autofocus>
                 <option selected disabled>-- Viešbutis nepasirinktas</option>
                 @forelse ($countries as $country)
                     <optgroup label="{{ $country->country_name }}">
