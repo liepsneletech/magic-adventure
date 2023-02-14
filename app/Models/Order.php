@@ -9,6 +9,18 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'country_id',
+        'hotel_id',
+    ];
+
+    const STATUS = [
+        0 => 'Nepatvirtintas',
+        1 => 'Patvirtintas',
+        2 => 'Atšauktas',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
