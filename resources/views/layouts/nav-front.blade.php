@@ -41,8 +41,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <form method="POST" action="{{ route('logout') }}"
-                                class="flex flex-col px-5 py-3 bg-green-500 text-white">
+                            <div class="flex flex-col px-5 py-3 bg-green-500 text-white">
                                 @csrf
                                 @forelse($cart->list as $product)
                                     <div
@@ -61,14 +60,14 @@
                                     <p>VISO:</p>
                                     <p>{{ $cart->total }} &euro;</p>
                                 </div>
-                            </form>
+                            </div>
                             <div class="flex items-center justify-end gap-3 p-3">
-                                <a href="{{ route('register') }}"
+                                <a href="{{ route('cart') }}"
                                     class="border-green-500 border-2 py-2 px-3 text-green-500 rounded-full uppercase text-xs font-bold tracking-widest hover:bg-green-500 hover:text-white">
                                     {{ __('Krepšelis') }}
                                 </a>
-                                <a href="{{ route('register') }}"
-                                    class="border-pink-700 border-2 bg-pink-700 py-2 px-3 text-white rounded-full uppercase text-xs font-semibold tracking-widest hover:bg-pink-800">
+                                <a href="#"
+                                    class="border-pink-700 border-2 bg-pink-700 py-2 px-3 text-white rounded-full uppercase text-xs font-semibold tracking-widest hover:bg-pink-800 hover:border-2 hover:border-pink-800">
                                     {{ __('Pirkimas') }}
                                 </a>
                             </div>

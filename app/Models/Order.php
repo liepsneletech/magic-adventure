@@ -16,9 +16,9 @@ class Order extends Model
     ];
 
     const STATUS = [
-        0 => 'Nepatvirtintas',
-        1 => 'Patvirtintas',
-        2 => 'Atšauktas',
+        'Nepatvirtintas' => 0,
+        'Patvirtintas' => 1,
+        'Atšauktas' => 2,
     ];
 
     public function user()
