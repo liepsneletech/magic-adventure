@@ -2,37 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\OrderShipped;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('pages.back.orders.orders');
+        $orders = Order::orderBy('created_at')
+            ->get()
+            ->map(function ($hotel) {
+                $hotel->hotels = json_decode($hotel->order_json);
+                return $hotel;
+            });
+        return view('back.orders.orders', ['orders' => $orders]);
     }
 
-    public function create()
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Order $order)
     {
-        return 'create';
+        $order->status = 1;
+        $order->save();
+        // $to = User::where('id', 'user_id')->get()[];
+        // $to = User::where('id', 'user_id')->first();
+
+        // $to = User::find($order->user_id);
+        // Mail::to($to)->send(new OrderShipped($order));
+        return redirect()->back();
     }
 
-    public function store()
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Order  $order
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Order $order)
     {
-        return 'store';
-    }
-
-    public function edit()
-    {
-        return 'edit';
-    }
-
-    public function update()
-    {
-        return 'update';
-    }
-
-    public function delete()
-    {
-        return 'delete';
+        if ($order->status == 0) {
+            return redirect()->back()->with('not', 'You can not delete unfinished orders');
+        }
+        $order->delete();
+        return redirect()->back();
     }
 }

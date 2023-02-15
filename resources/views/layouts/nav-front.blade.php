@@ -13,7 +13,7 @@
 
         <!-- nav Links -->
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
+            <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Pradžia') }}
             </x-nav-link>
             <x-nav-link :href="route('offers')" :active="request()->routeIs('offers')">
@@ -41,7 +41,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <div class="flex flex-col px-5 py-3 bg-green-500 text-white">
+                            <div class="flex flex-col px-5 py-3 bg-green-500 text-white rounded-t-lg">
                                 @csrf
                                 @forelse($cart->list as $product)
                                     <div

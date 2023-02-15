@@ -12,14 +12,27 @@ return new class extends Migration
      *
      * @return void
      */
+    // public function up()
+    // {
+    //     Schema::create('orders', function (Blueprint $table) {
+    //         $table->id();
+    //         $table->enum('status', Order::STATUS)->default(0);
+    //         $table->foreignId('user_id')->constrained()->onDelete('cascade');
+    //         $table->foreignId('offer_id')->constrained()->onDelete('cascade');
+    //         $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
+    //         $table->text('order_json');
+    //         $table->timestamps();
+    //     });
+    // }
+
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', Order::STATUS)->default(0);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('offer_id')->constrained()->onDelete('cascade');
-            $table->foreignId('hotel_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->text('order_json');
+            $table->smallInteger('status')->unsigned()->default(0);
             $table->timestamps();
         });
     }

@@ -110,7 +110,8 @@ class FrontController extends Controller
     public function cart(CartService $cart)
     {
         return view('components.cart', [
-            'cartList' => $cart->list
+            'cartList' => $cart->list,
+
         ]);
     }
 
@@ -137,6 +138,6 @@ class FrontController extends Controller
 
         $cart->empty();
 
-        return redirect()->route('start');
+        return view('pages.front.order-success');
     }
 }
