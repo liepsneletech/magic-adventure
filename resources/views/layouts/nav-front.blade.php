@@ -100,7 +100,7 @@
                                     {{ __('Paskyra') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('profile.edit')">
+                                <x-dropdown-link :href="route('user-orders')">
                                     {{ __('Užsakymai') }}
                                 </x-dropdown-link>
 

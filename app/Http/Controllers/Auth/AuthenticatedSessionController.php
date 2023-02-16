@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
@@ -40,12 +41,17 @@ class AuthenticatedSessionController extends Controller
     {
 
         $userRole = auth()->user()->role;
+        $requestUrl = URL::previous();
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+
         if ($userRole == User::ROLES['admin']) {
+            return redirect()->route('index');
+        } elseif ($requestUrl == route('user-orders') || $requestUrl == route('profile.edit')) {
             return redirect()->route('index');
         } else {
             return redirect()->back();

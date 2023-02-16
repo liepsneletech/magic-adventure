@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Monika',
+            'surname' => 'Levickaitė',
             'role' => '3',
             'email' => 'monika@gmail.com',
             'password' => Hash::make('monika123'),
@@ -25,9 +26,26 @@ class DatabaseSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Simona',
+            'surname' => 'Vilutienė',
             'role' => '1',
             'email' => 'simona@gmail.com',
             'password' => Hash::make('simona123'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Greta',
+            'surname' => 'Meškytė',
+            'role' => '1',
+            'email' => 'greta@gmail.com',
+            'password' => Hash::make('greta123'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Zilvinas',
+            'surname' => 'Gurklys',
+            'role' => '1',
+            'email' => 'zilvinas@gmail.com',
+            'password' => Hash::make('zilvinas123'),
         ]);
 
         DB::table('countries')->insert([

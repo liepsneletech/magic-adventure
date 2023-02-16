@@ -11,8 +11,9 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
+        'order_json',
         'country_id',
-        'hotel_id',
+        'hotel_id'
     ];
 
     const STATUS = [
@@ -34,5 +35,10 @@ class Order extends Model
     public function hotel()
     {
         return $this->belongsTo(Hotel::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
     }
 }

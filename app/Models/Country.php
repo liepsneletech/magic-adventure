@@ -22,4 +22,9 @@ class Country extends Model
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

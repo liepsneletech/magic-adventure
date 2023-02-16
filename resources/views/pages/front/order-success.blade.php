@@ -12,7 +12,7 @@
                 <div class="flex flex-col gap-5 justify-between p-10 pb-6">
                     <div>
                         <b class="text-pink-600 text-xl">Ačiū, {{ Auth::user()->name }}, </b>
-                        <p class="mb-10">Jūs sėkmingai pateikėte užsakymą.</p>
+                        <p class="mb-10 text-gray-600">Jūs sėkmingai pateikėte užsakymą.</p>
                         <div class="flex flex-col items-center justify-end gap-3 p-3">
                             <a
                                 class="w-[200px] border-pink-700 border-2 bg-pink-700 py-2 px-3 text-white rounded-full uppercase text-xs font-semibold tracking-widest hover:bg-pink-800 hover:border-2 hover:border-pink-800">

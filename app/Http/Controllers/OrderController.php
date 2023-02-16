@@ -10,47 +10,25 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $orders = Order::orderBy('created_at')
             ->get()
-            ->map(function ($hotel) {
-                $hotel->hotels = json_decode($hotel->order_json);
-                return $hotel;
+            ->map(function ($order) {
+                $order->offers = json_decode($order->order_json);
+                return $order;
             });
-        return view('back.orders.orders', ['orders' => $orders]);
+        return view('pages.back.orders.orders', ['orders' => $orders]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Order $order)
     {
         $order->status = 1;
         $order->save();
-        // $to = User::where('id', 'user_id')->get()[];
-        // $to = User::where('id', 'user_id')->first();
 
-        // $to = User::find($order->user_id);
-        // Mail::to($to)->send(new OrderShipped($order));
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Order $order)
     {
         if ($order->status == 0) {

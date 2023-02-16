@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Offer;
+use Illuminate\Support\Facades\Auth;
 
 class CartService
 {
@@ -65,12 +66,21 @@ class CartService
     $order->total = $this->total;
     $order->offers = [];
 
+    $name = Auth::user()->name;
+    $surname = Auth::user()->surname;
+    $order->name = $name;
+    $order->surname = $surname;
+
     foreach ($this->cartList as $offer) {
       $order->offers[] = (object)[
+        'id' => $offer->id,
         'title' => $offer->title,
         'count' => $offer->count,
         'price' => $offer->price,
-        'id' => $offer->id
+        'travel_start' => $offer->travel_start,
+        'travel_end' => $offer->travel_end,
+        'country_name' => $offer->country->country_name,
+        'hotel_title' => $offer->hotel->title
       ];
     }
 

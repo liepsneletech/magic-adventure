@@ -140,4 +140,18 @@ class FrontController extends Controller
 
         return view('pages.front.order-success');
     }
+
+    public function userOrders()
+    {
+        $user_id = Auth::user()->id;
+
+        $orders = Order::where('user_id', $user_id)->get()
+            ->map(function ($order) {
+                $order->order_json = json_decode($order->order_json);
+
+                return $order;
+            });
+
+        return view('pages.front.orders', compact('orders'));
+    }
 }

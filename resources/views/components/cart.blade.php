@@ -6,7 +6,7 @@
                 class="text-center text-pink-600 mb-8 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
                 Jūsų krepšelis
             </h1>
-            <form method="POST" action="{{ route('update-cart') }}">
+            <form method="post" action="{{ route('update-cart') }}">
                 @csrf
 
                 <div class="flex flex-col px-8 py-7 bg-green-500 text-white rounded-lg w-2/3 mx-auto">
