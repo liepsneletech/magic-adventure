@@ -118,11 +118,11 @@ label.filters-label {
 }
 
 .show .single-offer {
-    opacity: 1;
+    display: block;
 }
 
 .single-offer {
-    opacity: 0;
+    display: none;
 }
 
 .show .plus-icon {
@@ -130,7 +130,7 @@ label.filters-label {
 }
 
 .show .minus-icon {
-    display: inline-block;
+    display: inline;
 }
 
 .minus-icon {

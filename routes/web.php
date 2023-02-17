@@ -21,7 +21,6 @@ Route::post('/add-to-cart', [FrontController::class, 'addToCart'])->name('add-to
 
 Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders-index');
-    Route::get('/orders/{order}', [OrderController::class, 'edit'])->name('orders-edit');
     Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders-update');
     Route::delete('/orders/{order}', [OrderController::class, 'delete'])->name('orders-delete');
 

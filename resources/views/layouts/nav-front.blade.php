@@ -32,11 +32,12 @@
                 <div class="sm:flex sm:items-center sm:ml-6">
                     <x-dropdown align="right" width="80">
                         <x-slot name="trigger">
-                            <button class="flex">
-                                <i class="fa-solid fa-basket-shopping text-gray-500 flex self-center text-lg mr-1"></i>
-                                <span class="w-6 h-6 text-center text-white bg-pink-600 rounded-full">{{ $cart->count }}
+                            <button class="flex items-center">
+                                <i class="fa-solid fa-basket-shopping text-gray-500 text-lg pb-2 mr-1"></i>
+                                <span
+                                    class="w-5 h-5 text-sm text-center text-white bg-pink-600 rounded-full -translate-x-2 -translate-y-4">{{ $cart->count }}
                                 </span>
-                                <span class="ml-2 text-gray-600">{{ $cart->total }} &euro;</span>
+                                {{-- <span class="mt-1 text-gray-600">{{ $cart->total }} &euro;</span> --}}
                             </button>
                         </x-slot>
 
@@ -96,24 +97,27 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('profile.edit')">
-                                    {{ __('Paskyra') }}
-                                </x-dropdown-link>
-
-                                <x-dropdown-link :href="route('user-orders')">
-                                    {{ __('Užsakymai') }}
-                                </x-dropdown-link>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                        {{ __('Atsijungti') }}
+                                <div class="bg-green-500 rounded-lg">
+                                    <x-dropdown-link :href="route('profile.edit')" class="text-white hover:text-green-500 rounded-t-lg">
+                                        {{ __('Paskyra') }}
                                     </x-dropdown-link>
-                                </form>
+
+                                    <x-dropdown-link :href="route('user-orders')" class="text-white hover:text-green-500">
+                                        {{ __('Užsakymai') }}
+                                    </x-dropdown-link>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link :href="route('logout')"
+                                            onclick="event.preventDefault();
+                                                            this.closest('form').submit();"
+                                            class="text-white hover:text-green-500 rounded-b-lg">
+                                            {{ __('Atsijungti') }}
+                                        </x-dropdown-link>
+                                    </form>
+                                </div>
                             </x-slot>
                         </x-dropdown>
                     </div>

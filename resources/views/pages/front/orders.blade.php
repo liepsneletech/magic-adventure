@@ -1,5 +1,5 @@
 <x-front-layout>
-    <div class="bg-gray-100 min-h-screen pt-12">
+    <div class="bg-gray-100 min-h-screen pt-12 pb-20">
         <div class="container">
             <h1
                 class="text-center text-green-500 mb-8 text-4xl font-['Bebas_Neue'] justify-self-center col-start-1 col-end-2 row-start-1 row-end-2">
