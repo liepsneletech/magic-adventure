@@ -23,3 +23,11 @@ orders.forEach((order) => {
         order.classList.toggle("show");
     });
 });
+
+const selectCountry = document.querySelector("#country_id");
+
+selectCountry.addEventListener("change", function () {
+    axios
+        .get("http://magic-adventure.lt/admin/offers/add/country-id")
+        .then((res) => {});
+});
