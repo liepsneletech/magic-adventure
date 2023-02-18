@@ -46,6 +46,7 @@
 
 .order-approved {
     background: #22c55e;
+    padding: 3px 19px;
 }
 
 .order-not-approved {
@@ -53,5 +54,6 @@
 }
 
 .order-canceled {
-    background: #575757;
+    background: #969696;
+    padding: 3px 23px;
 }

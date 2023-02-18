@@ -10,7 +10,7 @@
                     {{-- single order --}}
                     <article class="order w-full mx-auto border-l-8 border-green-500 bg-white  rounded-lg shadow-sm">
                         {{-- order head --}}
-                        <div class="grid grid-cols-[repeat(8,auto)] items-center justify-between px-6 py-4">
+                        <div class="grid grid-cols-[0.7fr,1fr,1fr,1fr,1fr,1fr,1fr,0.1fr] items-center px-6 py-4">
                             <p class="text-gray-700"><b>ID:</b> <span>{{ $order->id }}</span></p>
                             <p class="text-gray-700"><b>Data:</b> <span>{{ $order->created_at->format('Y-m-d') }}</span>
                             </p>
@@ -19,7 +19,7 @@
                             <p class="text-gray-700"><b>Iš viso:</b> <span>{{ $order->order_json->total }} &euro;</span>
                             </p>
                             <p
-                                class="@if ($order->status == 0) order-not-approved @elseif($order->status == 1) order-approved @else order-canceled @endif">
+                                class="justify-self-center @if ($order->status == 0) order-not-approved @elseif($order->status == 1) order-approved @else order-canceled @endif">
                                 @if ($order->status == 0)
                                     {{ 'Nepatvirtintas' }}
                                 @elseif ($order->status == 1)
@@ -28,13 +28,28 @@
                                     {{ 'Atšauktas' }}
                                 @endif
                             </p>
-                            <form action="{{ route('orders-update', $order) }}" method="post">
-                                @csrf
-                                @method('put')
-                                <button type="submit">Patvirtinti</button>
-                            </form>
-                            {{-- accordion arrows --}}
-                            <button class="order-btn">
+                            <div class="flex gap-4 items-center text-lg">
+                                <form action="{{ route('admin-orders-confirm', $order) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit" class="text-2xl text-green-500"
+                                        title="Patvirtinti užsakymą"><i class="fa-solid fa-check"></i></button>
+                                </form>
+                                <form action="{{ route('admin-orders-cancel', $order) }}" method="post">
+                                    @csrf
+                                    @method('put')
+                                    <button type="submit" class="text-xl text-pink-500" title="Atšaukti užsakymą"><i
+                                            class="fa-solid fa-ban"></i></button>
+                                </form>
+                                <form action="{{ route('admin-orders-delete', $order) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="text-xl text-gray-700" title="Ištrinti užsakymą"><i
+                                            class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </div>
+                            {{-- accordion plus/minus btns --}}
+                            <button class="order-btn" title="Papildoma informacija">
                                 <span class="plus-icon text-2xl text-green-500"><i
                                         class="fa-regular fa-square-plus"></i></span>
                                 <span class="minus-icon text-2xl text-green-500"><i

@@ -21,8 +21,9 @@ Route::post('/add-to-cart', [FrontController::class, 'addToCart'])->name('add-to
 
 Route::middleware('roles:admin')->prefix('admin')->name('admin-')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders-index');
-    Route::put('/orders/{order}', [OrderController::class, 'update'])->name('orders-update');
-    Route::delete('/orders/{order}', [OrderController::class, 'delete'])->name('orders-delete');
+    Route::put('/orders/{order}/confirm', [OrderController::class, 'orderConfirm'])->name('orders-confirm');
+    Route::put('/orders/{order}/cancel', [OrderController::class, 'orderCancel'])->name('orders-cancel');
+    Route::delete('/orders/{order}', [OrderController::class, 'orderDelete'])->name('orders-delete');
 
     Route::get('/offers', [OfferController::class, 'index'])->name('offers-index');
     Route::get('/offers/add', [OfferController::class, 'create'])->name('offers-create');
