@@ -85,9 +85,9 @@
                                             {{ $offer->price }}
                                             &euro;
                                         </p>
-                                        <a href="{{ route('register') }}"
+                                        <a href="{{ route('login') }}"
                                             class="bg-pink-700 py-3 px-4 text-white rounded-full flex gap-1 uppercase text-xs font-semibold tracking-widest hover:bg-pink-800">
-                                            {{ __('Registruotis') }}
+                                            {{ __('Prisijungti') }}
                                         </a>
                                     </div>
                                 @endguest

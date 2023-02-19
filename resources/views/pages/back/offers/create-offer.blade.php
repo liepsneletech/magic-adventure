@@ -18,23 +18,24 @@
 
             <x-input-label for="country_id" :value="__('Šalis')" />
             <x-select-input id="country_id" class="block mt-1 w-full mb-3 text-gray-500" type="text"
-                name="country_id" :value="old('country_id')" required autofocus>
+                name="country_id" :value="old('country_id')">
                 <option selected disabled>-- Šalis nepasirinkta</option>
                 @forelse ($countries as $country)
-                    <option>
+                    <option value="{{ $country->id }}">
+
                         {{ $country->country_name }}
                     </option>
                 @endforeach
             </x-select-input>
 
-            {{-- <x-input-label for="hotel_id" :value="__('Viešbutis')" />
+            @error('country_id')
+                <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
+            @enderror
+
+            <x-input-label for="hotel_id" :value="__('Viešbutis')" />
             <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500" type="text" name="hotel_id"
-                :value="old('hotel_id')" required autofocus>
-                <option selected disabled>-- Viešbutis nepasirinktas</option>
-                @forelse ($hotels as $hotel)
-                    <option value="{{ $hotel->id }}">{{ $hotel->title }}</option>
-                @endforeach
-            </x-select-input> --}}
+                :value="old('hotel_id')">
+            </x-select-input>
 
             @error('hotel_id')
                 <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
@@ -42,7 +43,7 @@
 
             <x-input-label for="travel_start" :value="__('Kelionės pradžia')" />
             <x-text-input id="travel_start" class="block mt-1 w-full mb-3" type="date" name="travel_start"
-                :value="old('travel_start')" autofocus />
+                :value="old('travel_start')" max="{{ $country->season_end }}" />
 
 
             @error('travel_start')

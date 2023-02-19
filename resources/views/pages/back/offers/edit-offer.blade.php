@@ -13,31 +13,42 @@
                 <x-text-input id="title" class="block mt-1 mb-3 w-full bg-gray-100" type="text" name="title"
                     :value="$offer->title" autofocus />
 
-                <x-input-label for="hotel_id" :value="__('Viešbutis')" />
-                <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500 bg-gray-100" type="text"
-                    name="hotel_id" :value="old('hotel_id')" required autofocus>
-                    <option selected disabled>-- Viešbutis nepasirinktas</option>
+                <x-input-label for="country_id" :value="__('Šalis')" />
+                <x-select-input id="country_id" class="block mt-1 w-full mb-3 text-gray-500" type="text"
+                    name="country_id" :value="old('country_id')">
+                    <option selected disabled>-- Šalis nepasirinkta</option>
                     @forelse ($countries as $country)
-                        <optgroup label="{{ $country->country_name }}">
-                            @foreach ($country->hotels as $hotel)
-                                <option value="{{ $hotel->id }}" @if ($hotel->id == old('hotel_id', $offer->hotel->id)) selected @endif>
-                                    {{ $hotel->title }}</option>
-                            @endforeach
-                        </optgroup>
+                        <option value="{{ $country->id }}">
+
+                            {{ $country->country_name }}
+                        </option>
                     @endforeach
                 </x-select-input>
 
+                @error('country_id')
+                    <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
+                @enderror
+
+                <x-input-label for="hotel_id" :value="__('Viešbutis')" />
+                <x-select-input id="hotel_id" class="block mt-1 w-full mb-3 text-gray-500" type="text"
+                    name="hotel_id" :value="old('hotel_id')">
+                </x-select-input>
+
+                @error('hotel_id')
+                    <p class="text-white bg-red-600 rounded-lg py-1 px-4 text-sm mb-5">{{ $message }}</p>
+                @enderror
+
                 <x-input-label for="travel_start" :value="__('Kelionės pradžia')" />
                 <x-text-input id="travel_start" class="block mt-1 w-full mb-3 bg-gray-100" type="date"
-                    name="travel_start" :value="$offer->travel_start" autofocus />
+                    name="travel_start" :value="$offer->travel_start" />
 
                 <x-input-label for="travel_end" :value="__('Kelionės pabaiga')" />
                 <x-text-input id="travel_end" class="block mt-1 mb-3 w-full bg-gray-100" type="date"
-                    name="travel_end" :value="$offer->travel_end" autofocus />
+                    name="travel_end" :value="$offer->travel_end" />
 
                 <x-input-label for="price" :value="__('Kaina')" />
                 <x-text-input id="price" class="block mt-1 mb-5 w-full bg-gray-100" type="text" name="price"
-                    :value="$offer->price" autofocus />
+                    :value="$offer->price" />
 
                 <x-primary-button>
                     {{ __('Atnaujinti') }}

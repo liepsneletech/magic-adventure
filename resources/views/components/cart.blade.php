@@ -8,6 +8,7 @@
             </h1>
             <form method="post" action="{{ route('update-cart') }}">
                 @csrf
+                @method('put')
 
                 <div class="flex flex-col px-8 py-7 bg-green-500 text-white rounded-lg w-2/3 mx-auto">
                     @forelse($cart->list as $offer)

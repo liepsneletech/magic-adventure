@@ -138,6 +138,11 @@ class FrontController extends Controller
 
         $cart->empty();
 
+        return redirect()->route('success-order');
+    }
+
+    public function successOrder()
+    {
         return view('pages.front.order-success');
     }
 

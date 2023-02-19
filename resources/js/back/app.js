@@ -24,10 +24,48 @@ orders.forEach((order) => {
     });
 });
 
+// select country dropdown
+
 const selectCountry = document.querySelector("#country_id");
+let selectHotel = document.querySelector("#hotel_id");
+
+let selectStartDate = document.querySelector("#travel_start");
+let selectEndDate = document.querySelector("#travel_end");
 
 selectCountry.addEventListener("change", function () {
+    const selectedCountryId = selectCountry.value;
+    console.log(selectedCountryId);
+
     axios
-        .get("http://magic-adventure.lt/admin/offers/add/country-id")
-        .then((res) => {});
+        .get("/admin/offers/add/" + selectedCountryId)
+        .then((res) => {
+            let options = "";
+            let startDate = "";
+            let endDate = "";
+
+            console.log(res.data);
+
+            res.data[0].forEach(
+                (hotel) =>
+                    (options += `<option value="${hotel.id}">${hotel.title}</option>`)
+            );
+            selectHotel.innerHTML = options;
+
+            res.data[1].forEach(function (country) {
+                console.log(country);
+                if (country.id == selectedCountryId) {
+                    startDate = country.season_start;
+                    endDate = country.season_end;
+                    return [startDate, endDate];
+                }
+            });
+            console.log(startDate, endDate);
+
+            selectStartDate.setAttribute("min", startDate);
+            selectStartDate.setAttribute("max", endDate);
+
+            selectEndDate.setAttribute("min", startDate);
+            selectEndDate.setAttribute("max", endDate);
+        })
+        .catch((error) => console.log(error));
 });

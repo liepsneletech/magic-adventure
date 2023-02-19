@@ -51,7 +51,7 @@ class AuthenticatedSessionController extends Controller
 
         if ($userRole == User::ROLES['admin']) {
             return redirect()->route('index');
-        } elseif ($requestUrl == route('user-orders') || $requestUrl == route('profile.edit')) {
+        } elseif ($requestUrl == route('user-orders') || $requestUrl == route('success-order') || $requestUrl == route('profile.edit')) {
             return redirect()->route('index');
         } else {
             return redirect()->back();
