@@ -44,15 +44,15 @@
                         <x-slot name="content">
                             <div class="flex flex-col px-5 py-3 bg-green-500 text-white rounded-t-lg">
                                 @csrf
-                                @forelse($cart->list as $product)
+                                @forelse($cart->list as $offer)
                                     <div
                                         class="flex
                                 flex-nowrap justify-between border-b border-white border-opacity-30 py-2">
                                         <div>
-                                            {{ $product->title }}
-                                            <b>x {{ $product->count }}</b>
+                                            {{ $offer->title }}
+                                            <b>x {{ $offer->count }}</b>
                                         </div>
-                                        <p>{{ $product->sum }} &euro;</p>
+                                        <p>{{ $offer->sum }} &euro;</p>
                                     </div>
                                 @empty
                                     <span class="dropdown-item">Krepšelis tuščias</span>
