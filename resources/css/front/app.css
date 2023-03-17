@@ -5,7 +5,7 @@
 
 @font-face {
     font-family: "Amellia";
-    src: local("Amellia"), url("assets/fonts/Amellia.ttf");
+    src: local("Amellia"), url("/public/assets/fonts/Amellia.ttf");
 }
 
 .primary-heading {
